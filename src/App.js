@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './App.css';
 import properties$ from './mock';
 import { addProperty } from './actions'
-import Table from './components/table';
+import Table from './components/table/Table';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="container">
         <h1>Property table</h1>
         <Table/>
       </div>
