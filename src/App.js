@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import './App.css';
 import properties$ from './mock';
 import { addProperty } from './actions'
+import Table from './components/table';
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
     return (
       <div className="app">
         <h1>Property table</h1>
+        <Table/>
       </div>
     );
   }
@@ -28,8 +30,7 @@ App.propTypes = {
 };
 
 const mapActionsToProps = dispatch => ({
-  addProperty: property => dispatch((addProperty(property))),
+  addProperty: property => dispatch((addProperty(property)))
 });
 
 export default connect(null, mapActionsToProps)(App);
-

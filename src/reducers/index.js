@@ -2,7 +2,7 @@ import actionTypes from '../actions/actionTypes'
 
 const defaultState = {
   propertyCache: [],
-  property: [],
+  property: []
 };
 
 const rootReducer = (state = defaultState, action) => {
@@ -11,7 +11,7 @@ const rootReducer = (state = defaultState, action) => {
       const newProperty = action.payload;
       let property = [];
       let propertyCache = [...state.propertyCache, newProperty];
-      
+
       return Object.assign({}, state, {
         property,
         propertyCache
