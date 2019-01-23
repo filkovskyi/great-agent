@@ -3,6 +3,16 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import {sortBy} from 'lodash';
 import TableRow from './TableRow';
+import {SORT_BY} from '../../actions/';
+
+const SORTS = {
+  NONE: property => this.props.property,
+  ID: list => sortBy(this.props.property, 'id'),
+  ADDRESS: list => sortBy(this.props.property, 'address'),
+  TYPE: list => sortBy(this.props.property, 'type'),
+  PRICE: list => sortBy(this.props.property, 'price'),
+  LAST_UPDATE: list => sortBy(this.props.property, 'last_update')
+};
 
 class Table extends PureComponent {
   constructor(props) {
@@ -21,13 +31,15 @@ class Table extends PureComponent {
       />
     ))
   };
-  
+
   render() {
     return (
       <table className="table">
         <thead className="thead-light">
         <tr>
-          <th scope="col">Id</th>
+          <th scope="col">
+            Id
+          </th>
           <th scope="col">Address</th>
           <th scope="col">Type</th>
           <th scope="col">Price</th>
@@ -35,7 +47,7 @@ class Table extends PureComponent {
         </tr>
         </thead>
         <tbody>
-          {this.renderTableRows()}
+        {this.renderTableRows()}
         </tbody>
       </table>
     );

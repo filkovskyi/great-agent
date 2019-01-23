@@ -6,3 +6,11 @@ export function addProperty(property) {
     payload: property
   }
 }
+
+export function sortBy(propName) {
+  console.log(propName);
+  return {
+    type: actionTypes.SORT_BY,
+    payload: propName
+  }
+}
