@@ -1,18 +1,8 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
-import {sortBy} from 'lodash';
 import TableRow from './TableRow';
-import {SORT_BY} from '../../actions/';
-
-const SORTS = {
-  NONE: property => this.props.property,
-  ID: list => sortBy(this.props.property, 'id'),
-  ADDRESS: list => sortBy(this.props.property, 'address'),
-  TYPE: list => sortBy(this.props.property, 'type'),
-  PRICE: list => sortBy(this.props.property, 'price'),
-  LAST_UPDATE: list => sortBy(this.props.property, 'last_update')
-};
+import {sortBy} from '../../actions';
 
 class Table extends PureComponent {
   constructor(props) {
@@ -32,18 +22,36 @@ class Table extends PureComponent {
     ))
   };
 
+  sortById = () => {
+    return sortBy(this.props.sortBy('id'));
+  };
+
+  sortByAddress = () => {
+    return sortBy(this.props.sortBy('address'));
+  };
+
+  sortByType = () => {
+    return sortBy(this.props.sortBy('type'));
+  };
+
+  sortByPrice = () => {
+    return sortBy(this.props.sortBy('price'));
+  };
+
+  sortByDate = () => {
+    return sortBy(this.props.sortBy('lastUpdate'));
+  };
+
   render() {
     return (
       <table className="table">
         <thead className="thead-light">
         <tr>
-          <th scope="col">
-            Id
-          </th>
-          <th scope="col">Address</th>
-          <th scope="col">Type</th>
-          <th scope="col">Price</th>
-          <th scope="col">Last Update</th>
+          <th onClick={this.sortById} scope="col">Id</th>
+          <th onClick={this.sortByAddress} scope="col">Address</th>
+          <th onClick={this.sortByType} scope="col">Type</th>
+          <th onClick={this.sortByPrice} scope="col">Price</th>
+          <th onClick={this.sortByDate} scope="col">Last Update</th>
         </tr>
         </thead>
         <tbody>
@@ -58,6 +66,10 @@ const mapStateToProps = state => ({
   property: state.propertyCache
 });
 
+const mapActionsToProps = dispatch => ({
+  sortBy: prop => dispatch((sortBy(prop)))
+});
+
 Table.propTypes = {
   id: PropTypes.number,
   address: PropTypes.string,
@@ -66,4 +78,4 @@ Table.propTypes = {
   type: PropTypes.string
 };
 
-export default connect(mapStateToProps, null)(Table);
+export default connect(mapStateToProps, mapActionsToProps)(Table);
