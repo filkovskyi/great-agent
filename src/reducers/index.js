@@ -10,6 +10,7 @@ const rootReducer = (state = defaultState, action) => {
   switch(action.type) {
     case actionTypes.ADD_PROPERTY:
       const newProperty = action.payload;
+      newProperty.isFavorite = false;
       let property = [];
       let propertyCache = [...state.propertyCache, newProperty];
       return Object.assign({}, state, {
@@ -17,7 +18,6 @@ const rootReducer = (state = defaultState, action) => {
         propertyCache
       });
     case actionTypes.SORT_BY:
-      console.log(sortBy(state.propertyCache, [action.payload]))
       return Object.assign({}, state, {
         propertyCache: sortBy(state.propertyCache, [action.payload])
       });

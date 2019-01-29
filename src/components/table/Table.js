@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import TableRow from './TableRow';
-import {sortBy} from '../../actions';
+import {sortBy, toggleFav} from '../../actions';
 
 class Table extends PureComponent {
   constructor(props) {
@@ -17,6 +17,7 @@ class Table extends PureComponent {
     return this.props.property.map((item, key) => (
       <TableRow
         key={key}
+        toggleFav={this.props.toggleFav}
         {...item}
       />
     ))
@@ -52,6 +53,7 @@ class Table extends PureComponent {
           <th onClick={this.sortByType} scope="col">Type</th>
           <th onClick={this.sortByPrice} scope="col">Price</th>
           <th onClick={this.sortByDate} scope="col">Last Update</th>
+          <th scope="col">Add to favorite</th>
         </tr>
         </thead>
         <tbody>
@@ -67,7 +69,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = dispatch => ({
-  sortBy: prop => dispatch((sortBy(prop)))
+  sortBy: prop => dispatch((sortBy(prop))),
+  toggleFav: assetId => dispatch((toggleFav(assetId))),
 });
 
 Table.propTypes = {

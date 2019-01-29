@@ -13,3 +13,10 @@ export function sortBy(propName) {
     payload: propName
   }
 }
+
+export function toggleFav(assetId) {
+  return {
+    type: actionTypes.TOGGLE_FAV,
+    payload: assetId
+  }
+}

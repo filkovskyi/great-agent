@@ -6,12 +6,12 @@ import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import reducers from './reducers';
+import rootReducer from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={createStoreWithMiddleware(rootReducer)}>
     <App />
   </Provider>
   , document.getElementById('root'));

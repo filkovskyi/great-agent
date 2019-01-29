@@ -6,8 +6,12 @@ export default class TableRow extends PureComponent {
     super(props);
   }
 
+  toggleFav = () => {
+    this.props.toggleFav(this.props.id);
+  };
+
   render() {
-    const { id, address, type, price, lastUpdate,  } = this.props;
+    const { id, address, type, price, lastUpdate, isFavorite } = this.props;
     return (
       <tr>
         <td>{id}</td>
@@ -15,6 +19,7 @@ export default class TableRow extends PureComponent {
         <td>{type}</td>
         <td>{price}</td>
         <td>{lastUpdate}</td>
+        <td onClick={this.toggleFav}>{''+isFavorite}</td>
       </tr>
     )
   }
@@ -25,5 +30,5 @@ TableRow.propTypes = {
   address: PropTypes.string,
   type: PropTypes.string,
   price: PropTypes.number,
-  lastUpdate: PropTypes.number
+  lastUpdate: PropTypes.number,
 };
