@@ -14,9 +14,9 @@ export function sortBy(propName) {
   }
 }
 
-export function toggleFav(assetId) {
+export function toggleFav(propId) {
   return {
     type: actionTypes.TOGGLE_FAV,
-    payload: assetId
+    payload: propId
   }
 }

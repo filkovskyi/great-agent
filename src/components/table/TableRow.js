@@ -30,5 +30,5 @@ TableRow.propTypes = {
   address: PropTypes.string,
   type: PropTypes.string,
   price: PropTypes.number,
-  lastUpdate: PropTypes.number,
+  lastUpdate: PropTypes.number
 };

@@ -1,5 +1,5 @@
 import actionTypes from '../actions/actionTypes'
-import {sortBy} from 'lodash';
+import {sortBy, filter, forEach} from 'lodash';
 
 const defaultState = {
   propertyCache: [],
@@ -7,7 +7,7 @@ const defaultState = {
 };
 
 const rootReducer = (state = defaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.ADD_PROPERTY:
       const newProperty = action.payload;
       newProperty.isFavorite = false;
@@ -21,6 +21,15 @@ const rootReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         propertyCache: sortBy(state.propertyCache, [action.payload])
       });
+    case actionTypes.TOGGLE_FAV:
+      let filtered = filter(state.propertyCache, ['id', action.payload]);
+      let newColection = forEach(filtered, function (proprety) {
+        return proprety.isFavorite = true;
+      });
+      return Object.assign({}, state, {
+        propertyCache: newColection
+      });
+      return state;
     default:
       return state;
   }

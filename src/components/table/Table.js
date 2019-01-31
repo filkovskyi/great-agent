@@ -70,7 +70,7 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = dispatch => ({
   sortBy: prop => dispatch((sortBy(prop))),
-  toggleFav: assetId => dispatch((toggleFav(assetId))),
+  toggleFav: propId => dispatch((toggleFav(propId)))
 });
 
 Table.propTypes = {
