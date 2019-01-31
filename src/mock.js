@@ -22,17 +22,17 @@ const getAllProperties = (n) => {
   return result;
 };
 
-const properties = getAllProperties(200);
+const properties = getAllProperties(1);
 
 
 export default Rx.Observable
-  .interval(1000)
+  .interval(3000)
   .mergeMap(
     () => Rx.Observable
       .from(properties)
       .map((property) => {
         const random = Math.random();
-        const randomToUse = Math.round(random * 10000);
+        const randomToUse = Math.round(random * 10);
         return {
           ...property,
           price: random >= 0.5 ? property.price + randomToUse : property.price - randomToUse,

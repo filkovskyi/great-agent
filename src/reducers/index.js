@@ -23,13 +23,12 @@ const rootReducer = (state = defaultState, action) => {
       });
     case actionTypes.TOGGLE_FAV:
       let filtered = filter(state.propertyCache, ['id', action.payload]);
-      let newColection = forEach(filtered, function (proprety) {
-        return proprety.isFavorite = true;
+      let newCollection = forEach(filtered, function (property) {
+        return property.isFavorite = true;
       });
       return Object.assign({}, state, {
-        propertyCache: newColection
+        propertyCache: newCollection
       });
-      return state;
     default:
       return state;
   }
